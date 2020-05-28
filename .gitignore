@@ -1,3 +1,5 @@
+data_files/
+data_files/*
 data/
 data/*
 # Created by https://www.gitignore.io/api/venv,macos,python,jupyternotebooks,visualstudiocode

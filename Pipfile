@@ -18,6 +18,11 @@ quandl = "*"
 schedule = "*"
 pylint = "*"
 autopep8 = "*"
+seaborn = "*"
+nltk = "*"
+sklearn = "*"
+fuzzywuzzy = "*"
+wordcloud = "*"
 
 [requires]
 python_version = "3.7"

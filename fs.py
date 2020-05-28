@@ -17,7 +17,7 @@ def read_data(file, data_type=MOVIES):
     df = pd.read_json(file)
     if (data_type == MOVIES):
         df['release_date'] = pd.to_datetime(
-            df['release_date']).apply(lambda x: x.date())
+            df['release_date'], errors='coerce')
     df = df.dropna()
     if (data_type == MOVIES):
         df = df[df.apply(filter_movies, axis=1)]
@@ -43,8 +43,11 @@ def read_csv_data(file, data_type=MOVIES):
 
 def export_csv_to_json():
     movies = read_csv_data('./data_files/tmdb_5000_movies.csv')
-    movies_credits = read_csv_data('./data_files/tmdb_5000_credits.csv', CREDITS)
+    movies_credits = read_csv_data(
+        './data_files/tmdb_5000_credits.csv', CREDITS)
     with open('./data_files/tmdb_movies.json', 'w') as jsonFile:
-        jsonFile.write(json.dumps(movies, indent=4, sort_keys=True, default=str))
+        jsonFile.write(json.dumps(movies, indent=4,
+                                  sort_keys=True, default=str))
     with open('./data_files/tmdb_credits.json', 'w') as jsonFile:
-        jsonFile.write(json.dumps(movies_credits, indent=4, sort_keys=True, default=str))
+        jsonFile.write(json.dumps(movies_credits, indent=4,
+                                  sort_keys=True, default=str))

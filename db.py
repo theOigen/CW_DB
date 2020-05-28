@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 import os
-from fs import read_data
+from fs import read_data, CREDITS
 
 
 def connect(db_name="course-work"):
@@ -24,17 +24,12 @@ def import_collection(db_name="course-work", collection="movies", filepath="./da
 
 def init_db():
     DB = connect()
-    movies = read_data('./data/movies.json')
-    movies_credits = read_data('./data/credits.json')
+    movies = read_data('./data_files/tmdb_movies.json')
+    movies_credits = read_data(
+        './data_files/tmdb_credits.json', data_type=CREDITS)
     DB.movies.insert_many(movies)
     DB.credits.insert_many(movies_credits)
 
 
 if __name__ == '__main__':
-    # init_db()
-    # print(export_collection(filepath="./data/TEST_MOVIES.json"))
-    # print(import_collection(filepath="./data/TEST_MOVIES.json"))
-    # print(export_collection(collection="credits",
-    #                         filepath="./data/TEST_CREDITS.json"))
-    # INIT DB collections from files OR create backup from collection TO files
-    # print(import_collection(collection="credits", filepath="./data/credits.json"))
+    init_db()
