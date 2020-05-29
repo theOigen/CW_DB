@@ -8,14 +8,14 @@ def connect(db_name="course-work"):
     return client[db_name]
 
 
-def export_collection(db_name="course-work", collection="movies", filepath="./data/movies.json", host="localhost:27017"):
+def export_collection(db_name="course-work", collection="movies", filepath="./data_files/tmdb_movies.json", host="localhost:27017"):
     command = "mongoexport --db {} --collection {} --out {} --host {} --jsonArray".format(
         db_name, collection, filepath, host)
     os.system(command)
     return "{}.collection {} exported to file {}".format(db_name, collection, filepath)
 
 
-def import_collection(db_name="course-work", collection="movies", filepath="./data/movies.json", host="localhost:27017"):
+def import_collection(db_name="course-work", collection="movies", filepath="./data_files/tmdb_movies.json", host="localhost:27017"):
     command = "mongoimport --db {} --collection {} --file {} --host {} --jsonArray".format(
         db_name, collection, filepath, host)
     os.system(command)
